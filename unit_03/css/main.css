@@ -1,0 +1,208 @@
+/*This is using an autoprefixer.  Even though with Safari 9 flex will finally be 100% supported, it's still a good idea to support legacy.*/
+* {
+  box-sizing: border-box;
+}
+body, html {
+  /*take up all available height*/
+  height: 100%
+}
+body {
+  font: 100% 'Oswald', sans-serif;
+}
+/*This is to target IE11 only.  IE does not play nice with min-heights and column nowrap. More modifications will probably be needed, as it is a little buggy in IE11.  The new Edge browser is supposed to fix this flex bug and others.*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .wrapper {
+    height: 100%;
+  }
+  main {
+    min-height: 200px
+  }
+}
+.wrapper {
+  /*Fill all possible height with the wrapper. I believe height: 100% will also work just as well.*/
+  min-height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  /*this is the key to keeping elements such as the nav at the top and the footer at the bottom.  This might not always be needed.*/
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header {
+  text-align: center;
+  background: rgb(55,55,55);
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+/*I was lazy and I didn't create an image for the logo*/
+h1 { 
+  padding: 10px;
+  font-size: 2.7em;
+  color: rgb(245,235,245);
+  text-align: center;
+}
+/*You could also wrap this in a nav for extra semantic goodness*/
+.nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  padding-right: 10px;
+  /*this will push our nav all the way to the right.  Then we don't have to worry about the width*/
+  margin-left: auto
+}
+.nav > li {
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff
+}
+.nav > li:first-child {
+  border-left: 1px solid #fff
+}
+a {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  font-size: 1.5em;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  padding: 8px
+}
+a:hover {
+  background: darkgreen;
+  color: #000
+}
+main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  /*this will fill up the remaining space for our content*/
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+h2 {
+  width: 100%;
+  background: rgb(75,75,75);
+  color: rgb(205,205,205);
+  font-weight: 100;
+  padding: 10px 0;
+  text-align: center
+}
+main > section {
+  /*this will essentially make it a 3 column layout.  Change it to whatever is needed.  Width and percentages work just as well.*/
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 20px
+}
+
+pre {
+  text-align: left;
+}
+
+main > section {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    vertical-align: top;
+  }
+
+main > section > article {
+    width: 50%;
+    max-width:50%;
+    float: left;
+    padding: 20px;
+  }
+
+main > section > article > p {
+  text-align: justify;
+  font-size: 1.1em;
+  padding-bottom: 20px;
+}
+footer {
+  background: lightblue;
+  text-align: center;
+  padding: 10px;
+  /*you could also get rid of the .wrapper justify-content and use margin-top: auto*/
+}
+/*Change these generic media queries to suit your needs, especially with retina displays*/
+
+@media screen and (max-width: 568px) {
+  h1 {
+    width: 100%;
+    font-size: 2.0em
+  }
+  .nav {
+    min-width: 100%;
+    margin: auto;
+    padding: 0;
+  }
+  .nav > li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1
+  }
+  .nav > li > a {
+    font-size: 1.0em
+  }
+  h2 {
+    font-size: 1.2em
+  }
+  main {
+    /*go to a more vertical layout*/
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+  }
+  main > section {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+  }
+  main > section > article {
+    width: 100%
+  }
+}
