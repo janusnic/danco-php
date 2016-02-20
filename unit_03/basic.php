@@ -6,9 +6,10 @@
       <article>
         <h2>Проверка существования и размера файла</h2>
         <?php
+        $filename = 'test';
 if (! file_exists ($filename)) :
 print "File $filename does not exist!";
-endif:
+endif;
         ?>
       </article>
 
@@ -34,7 +35,7 @@ if (is_file($file)) :
 print "The file $file is valid and exists!";
 else :
 print "The file $file does not exist or it is not a valid file!";
-endif: ?>
+endif; ?>
 
       </article>
 
@@ -145,7 +146,7 @@ if ( is_writeable($filename) ) :
 // Открыть файл и установить указатель текущей позиции в конец файла
 $fh = fopen($filename, "a+");
 // Записать содержимое $data в файл
-$ success - fwrite($fh, $data);
+$success - fwrite($fh, $data);
 // Закрыть файл
 fclose($fh); else :
 print "Could not open Sfilename for writing";
@@ -190,7 +191,7 @@ if ( is_writeable($filename) ) :
 // Открыть файл и установить указатель текущей позиции в конец файла
 $fh = fopen($filename, "a+");
 // Записать содержимое $data в файл
-$ success - fputs($fh, $data);
+$success - fputs($fh, $data);
 // Закрыть файл
 fclose($fh); else :
 print "Could not open Sfilename for writing";
@@ -295,7 +296,7 @@ Recipe: Pastry Dough
 
         <?php
 $fh = fopen("pastry.txt", "r"); while (! feof($fh)) :
-$char = fgetc($fh):
+$char = fgetc($fh);
 print $char; endwhile;
 fclose($fh);
 
@@ -321,11 +322,11 @@ fclose($fh);
 
         <?php
 $fh = fopen("pastry.txt", "r");
-while (! feof($fh));
+while (! feof($fh)):
 $line = fgets($fh, 4096);
 print $line. "<br>";
 endwhile;
-fclose($fh):
+fclose($fh);
         ?>
 
       </article>
@@ -367,18 +368,14 @@ endwhile;
 fclose($fh);
 
 science.html
-<html>
-<head>
-<title>Breaking News - Science</title>
-<body>
-<h1>Alien lifeform discovered</h1><br>
-<b>August 20. 2000</b><br>
-Early this morning, a strange new form of fungus was found growing in the closet of W. J. Gilmore's old apartment refrigerator. It is not known if powerful radiation emanating from the tenant's computer monitor aided in this evolution.
-</body>
-</html>
+------------
 
-      </pre>
-    </article>
+&lt;h1&gt;Alien lifeform discovered&lt;/h1&gt;&lt;br&gt;
+&lt;b&gt;August 20. 2000&lt;/b&gt;&lt;br&gt;
+Early this morning, a strange new form of fungus was found growing in the closet of W. J. Gilmore's old apartment refrigerator. It is not known if powerful radiation emanating from the tenant's computer monitor aided in this evolution.
+
+</pre>
+   </article>
 
    </section>
 
@@ -387,12 +384,32 @@ Early this morning, a strange new form of fungus was found growing in the closet
         <h2>Выборочное удаление тегов из файла HTML</h2>
 
 <?php
-$fh = fopenC'science.html', "r");
+$filename = "science.html";
+if (is_file($filename)):
+print "The file $filename is valid and exists!";
+else:
+print "The file $filename does not exist or it is not a valid file!";
+endif;
+
+$fs = filesize($filename);
+
+print "The file $filename is $fs bytes!";
+
+$mode = 'r';
+
+if ( is_readable($filename) ) :
+// Открыть файл и установить указатель текущей позиции в конец файла
+$handle = fopen($filename, "r");
+else:
+print "$filename is not readable!";
+endif;
 $allowable = "<br>";
-while (! feof($fh)) :
-print fgetss($fh. 2048, $allowable);
+$handle = fopen($filename, $mode) or die("Can't open file") ;
+while(!feof($handle)):
+  $line = fgetss($handle,2048, $allowable);
+  print $line."<br>";
 endwhile;
-fclose($fh);
+fclose($handle);
 ?>
 
       </article>
@@ -400,12 +417,34 @@ fclose($fh);
     <article>
       <h2>Пример #13 fgetss</h2>
       <pre>
-$fh = fopenC'science.html', "r");
+
+$filename = "science.html";
+if (is_file($filename)):
+print "The file $filename is valid and exists!";
+else:
+print "The file $filename does not exist or it is not a valid file!";
+endif;
+
+$fs = filesize($filename);
+
+print "The file $filename is $fs bytes!";
+
+$mode = 'r';
+
+if ( is_readable($filename) ) :
+// Открыть файл и установить указатель текущей позиции в конец файла
+$handle = fopen($filename, "r");
+else:
+print "$filename is not readable!";
+endif;
 $allowable = "&lt;br&gt;";
-while (! feof($fh)) :
-print fgetss($fh. 2048, $allowable);
+$handle = fopen($filename, $mode) or die("Can't open file") ;
+while(!feof($handle)):
+  $line = fgetss($handle,2048, $allowable);
+  print $line."&lt;br&gt;";
 endwhile;
-fclose($fh);
+fclose($handle);
+
       </pre>
     </article>
 
@@ -418,7 +457,7 @@ fclose($fh);
 <?php
 $file_array = file( "pastry.txt" );
 while ( list( $line_num, $line ) = each($file_array ) ):
-print "<b>Line $line_num:</b> ". htmlspecialchars($line )."<br>\n"
+print "<b>Line $line_num:</b> ". htmlspecialchars($line )."<br>\n";
 endwhile;
 ?>
 
@@ -443,7 +482,7 @@ endwhile;
 <?php
 $restaurant_file = "latorre.txt";
 // Направить весь файл в стандартный выходной поток
-readfile($restaurant_filе);
+readfile($restaurant_file);
 ?>
 
       </article>
@@ -453,7 +492,7 @@ readfile($restaurant_filе);
       <pre>
 $restaurant_file = "latorre.txt";
 // Направить весь файл в стандартный выходной поток
-readfile($restaurant_filе);
+readfile($restaurant_file);
       </pre>
     </article>
 

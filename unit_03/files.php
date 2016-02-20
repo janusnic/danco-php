@@ -137,8 +137,7 @@ PING php-web2.php.net (72.52.91.14) 56(84) bytes of data.
         <h2>Работа с файловой системой</h2>
 <?php
 $file = "datafile.txt";
-list($dev, $inode, $inodep, $nlink, $uid, $gid, $inodev, $size, $atime, $mtime, $ctime,
-$bsize) = stat($file);
+list($dev, $inode, $inodep, $nlink, $uid, $gid, $inodev, $size, $atime, $mtime, $ctime, $bsize) = stat($file);
 print "$file is $size bytes. <br>";
 print "Last access time: $atime <br>";
 print "Last modification time: $mtime <br>";
@@ -185,14 +184,14 @@ chmod("data_file.txt", 0766); // Работает
         <h2>Копирование и переименование файлов</h2>
 <?php
 $data_file = "datal.txt";
-copy($data_file. $data_file'.bak') or die("Could not copy $data_file");
+copy($data_file, $data_file.'.bak') or die("Could not copy $data_file");
 ?>
       </article>
       <article>
       <h2>Пример #6 Копирование и переименование файлов</h2>
     <pre>
 $data_file = "datal.txt";
-copy($data_file. $data_file'.bak') or die("Could not copy $data_file");
+copy($data_file, $data_file.'.bak') or die("Could not copy $data_file");
   </pre>
 
     </article>
